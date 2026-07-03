@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Veggies</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+    background:#f5f8f4;
+    color:#333;
+    overflow-x:hidden;
+}
+
+header{
+    height:90vh;
+    background:linear-gradient(135deg,#3da35d,#8bd450);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    position:relative;
+}
+
+header::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:90px;
+    background:#f5f8f4;
+    border-radius:100% 100% 0 0;
+}
+
+.hero{
+    z-index:2;
+    animation:fadeIn 1s ease;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:20px;
+    opacity:.95;
+}
+
+.hero button{
+    margin-top:30px;
+    padding:15px 35px;
+    border:none;
+    background:white;
+    color:#2e7d32;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:17px;
+    transition:.3s;
+}
+
+.hero button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+section{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:70px 0;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#2e7d32;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    transition:.35s;
+    cursor:pointer;
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+}
+
+.emoji{
+    font-size:55px;
+}
+
+.card h3{
+    margin:15px 0;
+}
+
+.info{
+    color:#666;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.card button{
+    margin-top:18px;
+    padding:10px 18px;
+    border:none;
+    background:#43a047;
+    color:white;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.tipBox{
+    margin-top:60px;
+    background:white;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.tipText{
+    font-size:22px;
+    margin:20px 0;
+    color:#444;
+}
+
+.tipBox button{
+    padding:12px 25px;
+    border:none;
+    background:#2e7d32;
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+footer{
+    background:#2e7d32;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:60px;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.modal-content{
+    background:white;
+    width:400px;
+    max-width:100%;
+    border-radius:18px;
+    padding:30px;
+    animation:popup .3s ease;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:10px;
+    cursor:pointer;
+    font-size:22px;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#ddd;
+    border-radius:20px;
+    margin-top:40px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#4caf50,#81c784);
+    border-radius:20px;
+    transition:1s;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@media(max-width:700px){
+
+.hero h1{
+    font-size:42px;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="hero">
+<h1>🥬 Fresh Vegetables</h1>
+<p>Healthy • Organic • Delicious</p>
+
+<button onclick="scrollToSection()">Explore</button>
+
+</div>
+
+</header>
+
+
+<section id="vegetables">
+
+<h2>Popular Vegetables</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="emoji">🥕</div>
+<h3>Carrot</h3>
+<p class="info">
+Rich in Vitamin A and excellent for eye health.
+</p>
+<button onclick="showInfo('🥕 Carrot','Carrots are packed with beta-carotene, fiber, antioxidants, and Vitamin A. They are excellent for healthy vision and immunity.')">
+Learn More
+</button>
+</div>
+
+<div class="card">
+<div class="emoji">🥦</div>
+<h3>Broccoli</h3>
+<p class="info">
+Loaded with nutrients and antioxidants.
+</p>
+<button onclick="showInfo('🥦 Broccoli','Broccoli contains Vitamins C & K, fiber, calcium, and powerful antioxidants that support overall health.')">
+Learn More
+</button>
+</div>
+
+<div class="card">
+<div class="emoji">🍅</div>
+<h3>Tomato</h3>
+<p class="info">
+Juicy, flavorful and rich in lycopene.
+</p>
+<button onclick="showInfo('🍅 Tomato','Tomatoes provide Vitamin C, potassium, and lycopene, which is associated with heart health.')">
+Learn More
+</button>
+</div>
+
+<div class="card">
+<div class="emoji">🥬</div>
+<h3>Spinach</h3>
+<p class="info">
+A superfood filled with iron and vitamins.
+</p>
+<button onclick="showInfo('🥬 Spinach','Spinach is rich in iron, folate, Vitamin K, magnesium, and antioxidants.')">
+Learn More
+</button>
+</div>
+
+</div>
+
+
+<div class="tipBox">
+
+<h2>Daily Healthy Tip</h2>
+
+<div class="tipText" id="tip">
+Click below for today's healthy tip.
+</div>
+
+<button onclick="newTip()">
+Generate Tip
+</button>
+
+<div class="progress">
+<div class="progress-bar" id="progress"></div>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>🌱 Eat Fresh • Stay Healthy • Live Better</p>
+
+</footer>
+
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalBody"></p>
+
+</div>
+
+</div>
+
+<script>
+
+const tips=[
+"🥗 Fill half your plate with vegetables at every meal.",
+"🥬 Eat leafy greens at least three times each week.",
+"🥕 Colorful vegetables provide a variety of nutrients.",
+"🍅 Fresh vegetables contain more vitamins than heavily processed foods.",
+"🥦 Steam vegetables instead of frying to preserve nutrients.",
+"🌽 Drink enough water alongside a fiber-rich vegetable diet.",
+"🥒 Include raw vegetables as healthy snacks."
+];
+
+function newTip(){
+
+const random=tips[Math.floor(Math.random()*tips.length)];
+
+document.getElementById("tip").textContent=random;
+
+const bar=document.getElementById("progress");
+
+bar.style.width="0%";
+
+setTimeout(()=>{
+bar.style.width="100%";
+},50);
+
+}
+
+function showInfo(title,body){
+
+document.getElementById("modalTitle").textContent=title;
+
+document.getElementById("modalBody").textContent=body;
+
+document.getElementById("modal").style.display="flex";
+
+}
+
+function closeModal(){
+
+document.getElementById("modal").style.display="none";
+
+}
+
+window.onclick=function(e){
+
+if(e.target.id==="modal"){
+closeModal();
+}
+
+}
+
+function scrollToSection(){
+
+document.getElementById("vegetables").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.querySelectorAll(".card").forEach((card,index)=>{
+
+card.style.opacity="0";
+card.style.transform="translateY(30px)";
+
+setTimeout(()=>{
+card.style.transition=".6s";
+card.style.opacity="1";
+card.style.transform="translateY(0)";
+},index*180);
+
+});
+
+},300);
+
+});
+
+</script>
+
+</body>
+</html>
